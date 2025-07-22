@@ -33,14 +33,8 @@ jobs:
         with:
           dotnet-version: 9.0.x
 
-      - name: Add NuGet source
-        run: dotnet nuget add source https://api.nuget.org/v3/index.json
-
-      - name: Update workloads
-        run: dotnet workload update
-
       - name: Install MAUI workload
-        run: dotnet workload install maui --ignore-failed-sources --skip-manifest-update
+        run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore dependencies
         run: dotnet restore MaoMao/MaoMao.csproj
