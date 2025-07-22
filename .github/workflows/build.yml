@@ -40,7 +40,7 @@ jobs:
         run: dotnet restore MaoMao/MaoMao.csproj
 
       - name: Build iOS IPA
-        run: dotnet build MaoMao/MaoMao.csproj -c Release -f net8.0-ios /p:RuntimeIdentifier=ios-arm64 /p:BuildIpa=true /p:ArchiveOnBuild=true
+        run: dotnet build MaoMao/MaoMao.csproj -c Release -f net8.0-ios /p:RuntimeIdentifier=ios-arm64 /p:BuildIpa=true /p:ArchiveOnBuild=true /p:EnableCodeSigning=false
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
