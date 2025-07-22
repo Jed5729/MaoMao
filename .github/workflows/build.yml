@@ -52,7 +52,7 @@ jobs:
           /p:ArchiveOnBuild=true
 
       - name: Upload IPA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: maomao-ios-ipa
           path: MaoMao/bin/Release/net9.0-ios/ios-arm64/**/*.ipa
