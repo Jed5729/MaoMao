@@ -17,3 +17,41 @@ env:
   DOTNET_NOLOGO: true                     # Disable the .NET logo
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+
+jobs:
+  # iOS MAUI Build Job
+  build-ios:
+    runs-on: macos-latest
+    name: iOS Build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Add NuGet source
+        run: dotnet nuget add source https://api.nuget.org/v3/index.json
+
+      - name: Update workloads
+        run: dotnet workload update
+
+      - name: Install MAUI workload
+        run: dotnet workload install maui --ignore-failed-sources --skip-manifest-update
+
+      - name: Restore dependencies
+        run: dotnet restore MaoMao/MaoMao.csproj
+
+      - name: Build iOS IPA
+        run: dotnet build MaoMao/MaoMao.csproj -c Release -f net9.0-ios \
+          /p:RuntimeIdentifier=ios-arm64 \
+          /p:BuildIpa=true \
+          /p:ArchiveOnBuild=true
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v3
+        with:
+          name: maomao-ios-ipa
+          path: MaoMao/bin/Release/net9.0-ios/ios-arm64/**/*.ipa
