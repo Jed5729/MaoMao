@@ -7,7 +7,7 @@
     Title="MaoMao">
 
     <ShellContent
-        Title="Home"
+        Title="MaoMao"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
