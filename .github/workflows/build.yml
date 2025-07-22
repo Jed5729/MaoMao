@@ -22,7 +22,7 @@ env:
 jobs:
   # iOS MAUI Build Job
   build-ios:
-    runs-on: macos-latest
+    runs-on: macos-15
     name: iOS Build
     steps:
       - name: Checkout code
