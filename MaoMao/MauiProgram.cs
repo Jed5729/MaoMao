@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using MauiIcons.Core;
+using MauiIcons.Cupertino;
 
 namespace MaoMao
 {
@@ -9,6 +11,7 @@ namespace MaoMao
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseCupertinoMauiIcons()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
