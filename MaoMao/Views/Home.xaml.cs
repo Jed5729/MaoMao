@@ -1,12 +1,13 @@
-﻿using MauiIcons.Core;
+﻿using MaoMao.ViewModels;
+using MauiIcons.Core;
 
 namespace MaoMao.Views;
 
 public partial class Home : ContentPage
 {
-    public Home()
+    public Home(HomeViewModel vm)
     {
         InitializeComponent();
-        _ = new MauiIcon();
+        BindingContext = vm;
     }
 }
