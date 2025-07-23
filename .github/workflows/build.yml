@@ -1,15 +1,15 @@
 name: CI Build
 
 on:
-  push:
-    branches: [ master ]
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.gitignore'
-      - '**/*.gitattributes'
-      - '.github/workflows/build.yml'
-  pull_request:
-    branches: [ master ]
+  #push:
+    #branches: [ master ]
+    #paths-ignore:
+      #- '**/*.md'
+     # - '**/*.gitignore'
+    #  - '**/*.gitattributes'
+   #   - '.github/workflows/build.yml'
+  #pull_request:
+    #branches: [ master ]
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,7 +22,7 @@ env:
 jobs:
   # iOS MAUI Build Job
   build-ios:
-    runs-on: macos-latest
+    runs-on: macos-15
     name: iOS Build
     steps:
       - name: Checkout code
@@ -40,7 +40,7 @@ jobs:
         run: dotnet restore MaoMao/MaoMao.csproj
 
       - name: Build iOS IPA
-        run: dotnet build MaoMao/MaoMao.csproj -c Release -f net8.0-ios /p:RuntimeIdentifier=ios-arm64 /p:BuildIpa=true /p:ArchiveOnBuild=true
+        run: dotnet build MaoMao/MaoMao.csproj -c Release -f net8.0-ios /p:RuntimeIdentifier=ios-arm64 /p:BuildIpa=true /p:ArchiveOnBuild=true /p:EnableCodeSigning=false
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
