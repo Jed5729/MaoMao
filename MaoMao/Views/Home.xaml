@@ -4,7 +4,13 @@
              x:Class="MaoMao.Views.Home"
              xmlns:vm="clr-namespace:MaoMao.ViewModels"
              x:DataType="vm:HomeViewModel"
-             >
+             xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Padding="0,30">
+    <ContentPage.Behaviors>
+        <tk:StatusBarBehavior>
+
+        </tk:StatusBarBehavior>
+    </ContentPage.Behaviors>
 
     <VerticalStackLayout Padding="20">
         <Label 

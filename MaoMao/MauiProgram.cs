@@ -17,6 +17,12 @@ namespace MaoMao
                 .UseMauiCommunityToolkit()
                 .UseMauiCommunityToolkitMediaElement()
                 .UseCupertinoMauiIcons()
+#if ANDROID
+                .ConfigureMauiHandlers(x =>
+                {
+                    x.AddHandler<Shell, Platforms.AndroidCustoms.ShellHandlerEx>();
+                })
+#endif
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -28,6 +34,9 @@ namespace MaoMao
 
             builder.Services.AddTransient<Player>();
             builder.Services.AddTransient<PlayerViewModel>();
+
+            builder.Services.AddSingleton<AndroidMore>();
+            builder.Services.AddSingleton<AndroidMoreViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

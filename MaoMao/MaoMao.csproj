@@ -100,7 +100,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
@@ -112,6 +111,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\Account.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AndroidMore.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Downloads.xaml">

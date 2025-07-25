@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MaoMao.ViewModels"
+             xmlns:models="clr-namespace:MaoMao.Models"
+             x:DataType="vm:AndroidMoreViewModel"
+             x:Class="MaoMao.Views.AndroidMore"
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             Shell.NavBarIsVisible="False"
+             Padding="0,50"
+             x:Name="androidMorePage">
+
+    <VerticalStackLayout Padding="15,0,0,0">
+        <Label 
+            Text="More"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+            FontSize="18"/>
+
+        <CollectionView ItemsSource="{Binding Pages}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:MorePage">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference androidMorePage}, Path=BindingContext.NavigateCommand}" CommandParameter="{Binding Route}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <mi:MauiIcon Icon="{mi:Cupertino Icon={Binding PageIcon}}" IconSize="30" Grid.Column="0"/>
+                        <!--<Line Stroke="DarkSlateGray" X1="0" Y1="0" X2="10000" Y2="0" HorizontalOptions="Start" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,40"/>-->
+                        <BoxView Color="DarkSlateGray" HeightRequest="1"
+                                                         HorizontalOptions="Fill" VerticalOptions="End"
+                                                         Grid.Column="1" Grid.ColumnSpan="2"
+                                                         Margin="10,0,30,40"/>
+                        <Label Text="{Binding Title}" FontSize="22" HorizontalOptions="Start" Grid.Column="1" Grid.ColumnSpan="2" Padding="10,5,40,0"/>
+                        <mi:MauiIcon Icon="{mi:Cupertino Icon=ChevronRight}" IconSize="22" HorizontalOptions="End" Grid.Column="2" Padding="30,0"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <BoxView Color="DarkSlateGray" HeightRequest="1"
+         HorizontalOptions="Fill" VerticalOptions="End"
+         Grid.Column="1" Grid.ColumnSpan="2"
+         Margin="40,0,30,40"/>
+
+    </VerticalStackLayout>
+</ContentPage>
