@@ -18,6 +18,7 @@
             FontAttributes="Bold"
             FontSize="18"/>
 
+        <!--might add in some sort of manual back button implementation on the pages later when navigated to from here? idk.. rn it's swipe only i suppose-->
         <CollectionView ItemsSource="{Binding Pages}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
