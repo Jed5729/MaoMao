@@ -36,7 +36,7 @@ namespace MaoMao.Platforms.AndroidCustoms
 			var backgroundDrawable = new GradientDrawable();
 			backgroundDrawable.SetShape(ShapeType.Rectangle);
 			//backgroundDrawable.SetCornerRadii(new float[] { 40, 40, 40, 40, 0, 0, 0, 0 });
-			backgroundDrawable.SetTint(Application.Current?.RequestedTheme == AppTheme.Dark ? Android.Graphics.Color.Black : Android.Graphics.Color.LightGray);
+			//backgroundDrawable.SetTint(Application.Current?.RequestedTheme == AppTheme.Dark ? Android.Graphics.Color.Black : Android.Graphics.Color.LightGray);
 			bottomView.SetBackground(backgroundDrawable);
 			bottomView.SetPadding(0, 0, 0, 30);
 		}

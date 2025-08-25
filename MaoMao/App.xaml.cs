@@ -1,13 +1,15 @@
 ﻿
+using MaoMao.Services;
+
 namespace MaoMao
 {
     public partial class App : Application
     {
-        public App()
+        public App(ThemeManager themeManager)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new AppShell(themeManager);
         }
 
 		protected override Window CreateWindow(IActivationState? activationState)

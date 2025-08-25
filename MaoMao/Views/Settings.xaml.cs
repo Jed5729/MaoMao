@@ -1,9 +1,12 @@
+using MaoMao.ViewModels;
+
 namespace MaoMao.Views;
 
 public partial class Settings : ContentPage
 {
-	public Settings()
+	public Settings(SettingsViewModel vm)
 	{
 		InitializeComponent();
+		BindingContext = vm;
 	}
 }

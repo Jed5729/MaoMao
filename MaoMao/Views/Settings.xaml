@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MaoMao.ViewModels"
+             x:DataType="vm:SettingsViewModel"
              x:Class="MaoMao.Views.Settings"
              Shell.NavBarIsVisible="False">
     <ContentPage.Padding>
@@ -10,12 +12,16 @@
         </OnIdiom>
     </ContentPage.Padding>
 
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="10">
         <Label 
             Text="Settings"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             FontSize="18"
             FontAttributes="Bold"/>
+
+        <Button Text="Dark Theme" Command="{Binding DarkThemeCommand}" MaximumWidthRequest="150"/>
+        <Button Text="Light Theme" Command="{Binding LightThemeCommand}" MaximumWidthRequest="150"/>
+        <Button Text="MaoMao Theme" Command="{Binding MaoMaoThemeCommand}" MaximumWidthRequest="150"/>
     </VerticalStackLayout>
 </ContentPage>

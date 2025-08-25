@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MaoMao.Resources.Themes.MaoMao">
+
+    <Color x:Key="Background">#17222C</Color>
+    <Color x:Key="Navbar">#284045</Color>
+    <Color x:Key="Primary">#547A73</Color>
+    <Color x:Key="Accent">#44865C</Color>
+    <Color x:Key="Hover">#6CA067</Color>
+    <Color x:Key="Surface">#87B895</Color>
+    <Color x:Key="Text">#C0BFC6</Color>
+
+</ResourceDictionary>
