@@ -12,7 +12,7 @@
     Title="MaoMao">
 
     <OnPlatform x:TypeArguments="TabBar">
-        <On Platform="iOS, MacCatalyst, WinUI">
+        <On Platform="MacCatalyst, WinUI">
             <TabBar>
                 <Tab Title="Home" mi:MauiIcon.Value="{mi:Cupertino Icon=HouseFill}">
                     <ShellContent ContentTemplate="{DataTemplate views:Home}" />
@@ -44,7 +44,7 @@
             </TabBar>
         </On>
 
-        <On Platform="Android, Tizen">
+        <On Platform="iOS, Android, Tizen">
             <TabBar>
                 <Tab Title="Home" mi:MauiIcon.Value="{mi:Cupertino Icon=HouseFill}">
                     <ShellContent ContentTemplate="{DataTemplate views:Home}" />
