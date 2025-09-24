@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MaoMao.Views.Downloads">
-    <ContentPage.Padding>
+    <!--<ContentPage.Padding>
         <OnIdiom x:TypeArguments="Thickness">
             <OnIdiom.Phone>20,50</OnIdiom.Phone>
             <OnIdiom.Default>20,10</OnIdiom.Default>
         </OnIdiom>
-    </ContentPage.Padding>
+    </ContentPage.Padding>-->
 
     <VerticalStackLayout>
         <Label 

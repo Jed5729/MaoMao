@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Maui.Behaviors;
 using MaoMao.Services;
 
 namespace MaoMao
@@ -10,9 +11,17 @@ namespace MaoMao
             InitializeComponent();
 
             MainPage = new AppShell(themeManager);
+            if(Current is not null)
+			Current.PageAppearing += (s, e) => // Remove stupid ugly status bar thing :)
+			{
+				if (e is ContentPage page && page is not null && !page.Behaviors.OfType<StatusBarBehavior>().Any())
+				{
+					page.Behaviors.Add(new StatusBarBehavior());
+				}
+			};
         }
 
-		protected override Window CreateWindow(IActivationState? activationState)
+        protected override Window CreateWindow(IActivationState? activationState)
 		{
             var window = base.CreateWindow(activationState);
 

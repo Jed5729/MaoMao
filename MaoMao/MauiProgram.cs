@@ -34,22 +34,22 @@ namespace MaoMao
 
             builder.Services.AddSingleton<ThemeManager>();
 
-            builder.Services.AddSingleton<Home>();
-            builder.Services.AddSingleton<HomeViewModel>();
+            builder.Services.AddTransient<Home>();
+            builder.Services.AddTransient<HomeViewModel>();
 
             builder.Services.AddTransient<Player>();
             builder.Services.AddTransient<PlayerViewModel>();
 
-            builder.Services.AddSingleton<AndroidMore>();
-            builder.Services.AddSingleton<AndroidMoreViewModel>();
+            builder.Services.AddTransient<AndroidMore>();
+            builder.Services.AddTransient<AndroidMoreViewModel>();
 
-            builder.Services.AddSingleton<Settings>();
-            builder.Services.AddSingleton<SettingsViewModel>();
+            builder.Services.AddTransient<Settings>();
+            builder.Services.AddTransient<SettingsViewModel>();
 
-            builder.Services.AddSingleton<Search>();
-            builder.Services.AddSingleton<Downloads>();
-			builder.Services.AddSingleton<History>();
-			builder.Services.AddSingleton<Account>();
+            builder.Services.AddTransient<Search>();
+            builder.Services.AddTransient<Downloads>();
+			builder.Services.AddTransient<History>();
+			builder.Services.AddTransient<Account>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

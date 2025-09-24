@@ -7,10 +7,9 @@
              x:Class="MaoMao.Views.AndroidMore"
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              Shell.NavBarIsVisible="False"
-             Padding="0,50"
              x:Name="androidMorePage">
 
-    <VerticalStackLayout Padding="15,0,0,0">
+    <VerticalStackLayout>
         <Label 
             Text="More"
             VerticalOptions="Center" 

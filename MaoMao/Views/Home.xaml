@@ -5,17 +5,16 @@
              xmlns:vm="clr-namespace:MaoMao.ViewModels"
              x:DataType="vm:HomeViewModel"
              xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
-    <ContentPage.Padding>
+    <!--<ContentPage.Padding>
         <OnIdiom x:TypeArguments="Thickness">
             <OnIdiom.Phone>20,50</OnIdiom.Phone>
             <OnIdiom.Default>20,10</OnIdiom.Default>
         </OnIdiom>
-    </ContentPage.Padding>
-    <ContentPage.Behaviors>
+    </ContentPage.Padding>-->
+    <!--<ContentPage.Behaviors>
         <tk:StatusBarBehavior>
-
         </tk:StatusBarBehavior>
-    </ContentPage.Behaviors>
+    </ContentPage.Behaviors>-->
 
     <VerticalStackLayout>
         <Label 

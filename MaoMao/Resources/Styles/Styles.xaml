@@ -3,7 +3,8 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons">
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{DynamicResource Primary}" />
@@ -427,6 +428,17 @@
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="{DynamicResource Background}"/>
+        <Setter Property="Padding">
+            <Setter.Value>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>20,50</OnIdiom.Phone>
+                    <OnIdiom.Default>20,10</OnIdiom.Default>
+                </OnIdiom>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,50"/>
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="mi:MauiIcon">

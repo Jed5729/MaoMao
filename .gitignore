@@ -16,6 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 
+# Excluded Projects
+MaoMao.API/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

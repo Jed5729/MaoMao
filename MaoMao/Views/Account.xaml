@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MaoMao.Views.Account"
              Shell.NavBarIsVisible="False">
-    <ContentPage.Padding>
+    <!--<ContentPage.Padding>
         <OnIdiom x:TypeArguments="Thickness">
             <OnIdiom.Phone>20,50</OnIdiom.Phone>
             <OnIdiom.Default>20,10</OnIdiom.Default>
         </OnIdiom>
-    </ContentPage.Padding>
+    </ContentPage.Padding>-->
 
     <VerticalStackLayout>
         <Label 
