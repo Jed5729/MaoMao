@@ -70,6 +70,13 @@
 	  <ApplicationId>com.jed.maomao</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
+		<PublishTrimmed>false</PublishTrimmed>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<MtouchEnableLLVM>false</MtouchEnableLLVM>
+		<MtouchLink>None</MtouchLink>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<!--<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />-->
