@@ -430,12 +430,15 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Background}"/>
         <Setter Property="Padding">
             <Setter.Value>
-                <OnIdiom x:TypeArguments="Thickness">
+                <!--<OnIdiom x:TypeArguments="Thickness">
                     <OnIdiom.Phone>20,50</OnIdiom.Phone>
                     <OnIdiom.Default>20,10</OnIdiom.Default>
-                </OnIdiom>
+                </OnIdiom>-->
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="iOS" Value="0,50"/>
+                    <On Platform="Android" Value="20,50"/>
+                    <On Platform="MacCatalyst" Value="20,10"/>
+                    <On Platform="WinUI" Value="20,10"/>
                 </OnPlatform>
             </Setter.Value>
         </Setter>
