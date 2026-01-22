@@ -17,7 +17,10 @@
 mono_crash.*
 
 # Excluded Projects
-MaoMao.API/
+#MaoMao.API/
+
+# Exclude the appsettings
+*appsettings.*json
 
 # Build results
 [Dd]ebug/

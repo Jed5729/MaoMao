@@ -5,8 +5,8 @@ namespace MaoMao.ViewModels;
 
 public partial class SettingsViewModel : ObservableObject
 {
-	private ThemeManager _themes;
-	public SettingsViewModel(ThemeManager themeManager)
+	private IThemeManager _themes;
+	public SettingsViewModel(IThemeManager themeManager)
 	{
 		_themes = themeManager;
 	}

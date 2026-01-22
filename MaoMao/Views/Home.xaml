@@ -35,6 +35,12 @@
         </ScrollView>
 
         <Button Text="Go to Player" Command="{Binding GoToPlayerCommand}"/>
+
+        <Button Text="Sign in" Command="{Binding SignInCommand}"/>
+        <Button Text="Register" Command="{Binding RegisterCommand}"/>
+        <Button Text="Log out" Command="{Binding LogOutCommand}"/>
+        <Button Text="Verify" Command="{Binding SendVerificationCommand}"/>
+        
     </VerticalStackLayout>
 
 </ContentPage>

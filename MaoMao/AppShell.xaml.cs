@@ -6,7 +6,7 @@ namespace MaoMao
 {
     public partial class AppShell : Shell
     {
-        public AppShell(ThemeManager themeManager)
+        public AppShell(IThemeManager themeManager)
         {
             InitializeComponent();
             _ = new MauiIcon();

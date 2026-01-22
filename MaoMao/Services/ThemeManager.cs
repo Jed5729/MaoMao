@@ -2,7 +2,7 @@
 
 namespace MaoMao.Services;
 
-public class ThemeManager
+public class ThemeManager : IThemeManager
 {
 	private const string ThemeKey = "theme";
 
@@ -17,7 +17,7 @@ public class ThemeManager
 
 	public void SetTheme(string themeName)
 	{
-		if(SelectedTheme == themeName) return;
+		if (SelectedTheme == themeName) return;
 
 		var themeToBeApplied = _themesMap[themeName];
 

@@ -5,6 +5,7 @@ using MaoMao.Views;
 using MaoMao.ViewModels;
 using CommunityToolkit.Maui;
 using MaoMao.Services;
+using System.Net.Http.Headers;
 
 namespace MaoMao
 {
@@ -32,9 +33,17 @@ namespace MaoMao
 
             _ = new MauiIcon();
 
-            builder.Services.AddSingleton<ThemeManager>();
+            builder.Services.AddSingleton<IThemeManager, ThemeManager>();
+            builder.Services.AddSingleton<AuthManager>();
+            builder.Services.AddScoped<AuthManager.AuthHandler>();
 
-            builder.Services.AddTransient<Home>();
+			builder.Services.AddHttpClient("ApiClient", c =>
+			{
+				c.BaseAddress = new Uri("https://localhost:7208/");
+				c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			}).AddHttpMessageHandler<AuthManager.AuthHandler>();
+
+			builder.Services.AddTransient<Home>();
             builder.Services.AddTransient<HomeViewModel>();
 
             builder.Services.AddTransient<Player>();

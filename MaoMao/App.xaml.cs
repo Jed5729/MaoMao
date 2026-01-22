@@ -6,7 +6,7 @@ namespace MaoMao
 {
     public partial class App : Application
     {
-        public App(ThemeManager themeManager)
+        public App(IThemeManager themeManager, AuthManager auth)
         {
             InitializeComponent();
 
@@ -19,6 +19,11 @@ namespace MaoMao
 					page.Behaviors.Add(new StatusBarBehavior());
 				}
 			};
+
+            //var refreshToken = SecureStorage.GetAsync("refreshToken").Result;
+            //var refreshTokenId = SecureStorage.GetAsync("refreshTokenId").Result;
+
+            _ = Task.Run(auth.RefreshTokenAsync);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
