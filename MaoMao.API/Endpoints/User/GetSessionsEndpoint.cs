@@ -1,5 +1,6 @@
 ﻿using MaoMao.API.DTO.User;
 using MaoMao.API.Services.Contract;
+using MaoMao.Shared.DTO.User;
 
 namespace MaoMao.API.Endpoints.User;
 
@@ -9,6 +10,7 @@ public class GetSessionsEndpoint(ITokenService tokenService) : EndpointWithoutRe
 	{
 		Get("/user/sessions");
 		AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
+		Policies("DefaultUser");
 	}
 
 	public override async Task HandleAsync(CancellationToken ct)

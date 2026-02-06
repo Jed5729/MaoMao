@@ -55,7 +55,22 @@ builder.Services.AddAuthenticationJwtBearer(s => {
 	b.ClaimsIssuer = builder.Configuration["JWT:Issuer"];
 	b.Audience = builder.Configuration["JWT:Audience"];
 });
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationBuilder()
+	.AddPolicy("DefaultUser", p =>
+	{
+		p.RequireAuthenticatedUser();
+		p.RequireClaim(JwtRegisteredClaimNames.Typ, "access");
+	})
+	.AddPolicy("TwoFactorPending", p =>
+	{
+		p.RequireAuthenticatedUser();
+		p.RequireClaim(JwtRegisteredClaimNames.Typ, "2fa_pending");
+	})
+	.AddFallbackPolicy("Fallback", p =>
+	{
+		p.RequireAuthenticatedUser();
+		p.RequireClaim(JwtRegisteredClaimNames.Typ, "access");
+	});
 
 builder.Services.AddSingleton<IMongoClient>(mongoClient);
 builder.Services.AddSingleton<IMongoDatabase>(mongoDatabase);

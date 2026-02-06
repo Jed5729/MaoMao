@@ -2,6 +2,7 @@
 using MaoMao.API.DTO.User;
 using MaoMao.API.Models;
 using MaoMao.API.Services.Contract;
+using MaoMao.Shared.DTO.User;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
@@ -34,16 +35,22 @@ public class TokenService : ITokenService
 		return Convert.ToBase64String(bytes);
 	}
 
-	public async Task<RefreshToken> GenerateRefreshTokenAsync(string userId, string deviceName, string ip)
+	public async Task<RefreshToken> GenerateRefreshTokenAsync(User user, string deviceName, string ip)
 	{
 		var token = new RefreshToken
 		{
 			Token = GenerateSecureToken(),
-			UserId = userId,
+			UserId = user.UserId,
 			DeviceName = deviceName,
 			IpAddress = ip,
 			ExpiresAt = DateTime.UtcNow.AddDays(_config.GetValue<int>("JWT:RefreshTokenDurationDays"))
 		};
+
+		if (user is not null)
+		{
+			if (!user.KnownIPs.Contains(ip))
+				user.KnownIPs.Add(ip);
+		}
 
 		await _tokens.InsertOneAsync(token);
 
@@ -88,13 +95,33 @@ public class TokenService : ITokenService
 			new Claim(JwtRegisteredClaimNames.UniqueName, user.Username),
 			new Claim(JwtRegisteredClaimNames.Email, user.Email),
 			new Claim(JwtRegisteredClaimNames.Sid, sessionRefreshTokenId),
-			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+			new Claim(JwtRegisteredClaimNames.Typ, "access"),
 		};
 
 		return JwtBearer.CreateToken(o =>
 		{
 			o.SigningKey = _config["JWT:SecretKey"]!;
 			o.ExpireAt = DateTime.UtcNow.AddMinutes(_config.GetValue<int>("JWT:ExpireInMinutes"));
+			o.Issuer = _config["JWT:Issuer"]!;
+			o.Audience = _config["JWT:Audience"]!;
+			o.User.Claims.AddRange(claims);
+		});
+	}
+
+	public string GenerateTwoFactorPendingToken(User user)
+	{
+		var claims = new[]
+		{
+			new Claim(JwtRegisteredClaimNames.Sub, user.UserId),
+			new Claim(JwtRegisteredClaimNames.Typ, "2fa_pending"),
+			new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+		};
+
+		return JwtBearer.CreateToken(o =>
+		{
+			o.SigningKey = _config["JWT:SecretKey"]!;
+			o.ExpireAt = DateTime.UtcNow.AddMinutes(_config.GetValue<int>("JWT:2FAPendingTokenMinutes"));
 			o.Issuer = _config["JWT:Issuer"]!;
 			o.Audience = _config["JWT:Audience"]!;
 			o.User.Claims.AddRange(claims);

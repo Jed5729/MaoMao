@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MaoMao.Shared.DTO.User;
 
 namespace MaoMao.API.DTO.User.Validation;
 

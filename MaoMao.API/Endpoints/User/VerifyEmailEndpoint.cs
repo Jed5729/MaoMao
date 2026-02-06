@@ -1,4 +1,5 @@
 ﻿using MaoMao.API.DTO.User;
+using MaoMao.Shared.DTO.User;
 
 namespace MaoMao.API.Endpoints.User;
 
@@ -8,6 +9,7 @@ public class VerifyEmailEndpoint(IEmailService emails, IUserService users) : End
 	{
 		Post("/user/verifyemail");
 		AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
+		Policies("DefaultUser");
 	}
 
 	public override async Task HandleAsync(VerifyEmailRequest req, CancellationToken ct)

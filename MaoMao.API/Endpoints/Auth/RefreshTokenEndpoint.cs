@@ -1,5 +1,6 @@
 ﻿using MaoMao.API.DTO.Auth;
 using MaoMao.API.Services.Contract;
+using MaoMao.Shared.DTO.Auth;
 
 namespace MaoMao.API.Endpoints.Auth;
 
@@ -35,7 +36,7 @@ public class RefreshTokenEndpoint(IUserService users, ITokenService tokens) : En
 			return;
 		}
 
-		var refreshToken = await tokens.GenerateRefreshTokenAsync(storedSession.UserId, req.DeviceName, HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown");
+		var refreshToken = await tokens.GenerateRefreshTokenAsync(user, req.DeviceName, HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown");
 		var accessToken = tokens.GenerateAccessToken(user, refreshToken.Id);
 		await tokens.RevokeTokenAsync(storedSession.Id);
 

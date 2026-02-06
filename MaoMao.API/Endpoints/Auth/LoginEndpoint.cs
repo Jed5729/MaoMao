@@ -1,11 +1,9 @@
-﻿using MaoMao.API.DTO.Auth;
-using MaoMao.API.Services;
-using MaoMao.API.Services.Contract;
+﻿using MaoMao.Shared.DTO.Auth;
 
 namespace MaoMao.API.Endpoints.Auth;
 
 [Throttle(hitLimit: 10, durationSeconds: 300)] // 10 attempts per 5 minutes
-public class LoginEndpoint(IUserService _users) : Endpoint<LoginRequest, AuthResponse>
+public class LoginEndpoint(IUserService _users, ITokenService _tokens) : Endpoint<LoginRequest, AuthResponse>
 {
 	public override void Configure()
 	{
@@ -19,15 +17,9 @@ public class LoginEndpoint(IUserService _users) : Endpoint<LoginRequest, AuthRes
 		if (result.RefreshToken is null)
 		{
 			AddError("RefreshToken null");
-			await Send.ErrorsAsync();
+			await Send.ErrorsAsync(cancellation: ct);
 			return;
-		}
-		//var user = await _users.FindUserByIdAsync(result.RefreshToken.UserId);
-		//if (user.IsDeletionRequested)
-		//{
-		//	await Send.UnauthorizedAsync();
-		//	return;
-		//}
+		}		
 
 		if (!result.Success)
 		{
@@ -43,6 +35,23 @@ public class LoginEndpoint(IUserService _users) : Endpoint<LoginRequest, AuthRes
 			await _users.FlagUserForDeletionAsync(user.UserId);
 			AddError("Email address never verified.");
 			await Send.ErrorsAsync(cancellation: ct);
+			return;
+		}
+
+		if (user.IsDeletionRequested)
+		{
+			AddError("Account is pending deletion, it cannot be logged into at this time.");
+			await Send.ErrorsAsync(cancellation: ct);
+			return;
+		}
+
+		if (user.TwoFactorEnabled)
+		{
+			await Send.OkAsync(new AuthResponse()
+			{
+				TwoFactorRequired = true,
+				TwoFactorPendingToken = _tokens.GenerateTwoFactorPendingToken(user)
+			});
 			return;
 		}
 

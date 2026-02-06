@@ -11,6 +11,7 @@ public class DeleteAccountEndpoint(IUserService _users) : EndpointWithoutRequest
 	{
 		Get("/user/delete-account");
 		AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
+		Policies("DefaultUser");
 	}
 
 	public override async Task HandleAsync(CancellationToken ct)

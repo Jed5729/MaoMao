@@ -32,4 +32,16 @@ public class User
 
 	[BsonElement("deletionRequestedTime")]
 	public DateTime? DeletionRequestedTime { get; set; } = null;
+
+	[BsonElement("twoFactorEnabled")]
+	public bool TwoFactorEnabled { get; set; } = false;
+
+	[BsonElement("twoFactorSecret")]
+	public string TwoFactorSecret { get; set; } = null!;
+
+	[BsonElement("knownIPs")]
+	public List<string> KnownIPs { get; set; } = new();
+
+	[BsonElement("isAdmin")]
+	public bool IsAdmin { get; set; } = false;
 }

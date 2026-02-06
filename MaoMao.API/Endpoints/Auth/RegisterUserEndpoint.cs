@@ -1,6 +1,7 @@
 ﻿using MaoMao.API.DTO.Auth;
 using MaoMao.API.Services;
 using MaoMao.API.Services.Contract;
+using MaoMao.Shared.DTO.Auth;
 
 namespace MaoMao.API.Endpoints.Auth;
 
