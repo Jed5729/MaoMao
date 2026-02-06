@@ -1,4 +1,4 @@
-﻿namespace MaoMao.API.DTO.Auth;
+﻿namespace MaoMao.Shared.DTO.Auth;
 
 public class LoginRequest
 {

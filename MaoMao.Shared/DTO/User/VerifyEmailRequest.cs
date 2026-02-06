@@ -1,4 +1,4 @@
-﻿namespace MaoMao.API.DTO.User;
+﻿namespace MaoMao.Shared.DTO.User;
 
 public class VerifyEmailRequest
 {
